@@ -1,4 +1,8 @@
 const searchEl = document.querySelector('.search');
+/*
+document도 하나의 요소 => <!DOCTYPE html> 즉, html 자체
+*/ 
+
 const searchInputEl = searchEl.querySelector('input');
 
 searchEl.addEventListener('click', function(){
@@ -59,10 +63,46 @@ window.addEventListener('scroll', _.throttle(function(){
 }, 300));
 
 // gsap.to(요소, 시간, 옵션) => 애니메이션 처리를 할 요소, 요소 지속시간(초단위), 실제 처리 옵션
-// TweenMax.to(요소, 시간, 옵션) => 애니메이션 처리를 할 요소, 요소 지속시간(초단위), 실제 처리 옵션
 
 
 
-/*
-document도 하나의 요소 => <!DOCTYPE html> 즉, html 자체
-*/ 
+const fadeEls = document.querySelectorAll('.visual .fade-in');
+// fade in 클래스 요소 전체 선택 
+
+fadeEls.forEach(function(fadeEl, index){
+    gsap.to(fadeEl,1,{
+        delay: (index+1)*.7, //요소들 각각 0.7 1.4 2.1 2.8초 뒤 실행
+        opacity:1
+    });
+});
+// fade-in 요소들을 순차적으로 처리
+// fadeEL: 각각의 반복되는 요소
+// index: 반복되는 횟수
+// gsap.to(요소, 시간, 옵션) => 애니메이션 처리를 할 요소, 요소 지속시간(초단위), 실제 처리 옵션
+//delay: 몇 초에 한 번씩 실행되는지 
+
+
+new Swiper('.notice-line .swiper-container', { //new : 생성자
+    direction: 'vertical', // 수직 슬라이드
+    autoplay: true, // 자동 재생 여부
+    loop: true // 반복 재생 여부
+  });
+
+
+new Swiper('.promotion .swiper-container', {
+    slidesPerView: 3, //한번에 보여줄 슬라이드 개수
+    spaceBetween: 10, //슬라이드 사이 여백 (px)
+    centeredSlides: true, //1번 슬라이드가 가운데 보이게
+    loop: true, // 반복 재생 여부
+    autoplay: {
+        delay: 5000 //자동 재생 - 밀리초 단위로 슬라이드
+    },
+    pagination: {
+        el: '.promotion .swiper-pagination', //페이지 번호 요소 선택자
+        clickable: true, //사용자의 페이지 번호 요소 제어 여부
+    },
+    navigation:{
+        prevEl: '.promotion .swiper-prev', //현재 페이지 다음 요소
+        nextEl: '.promotion .swiper-next' //현재 페이지 이전 요소
+    }
+});

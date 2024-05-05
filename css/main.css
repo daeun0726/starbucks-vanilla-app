@@ -26,6 +26,75 @@ a{
     /* 위치 상의 부모요소가 될 수 있음 */
 }
 
+.btn{
+    width: 130px;
+    padding: 10px;
+    /* 크기 지정 */
+    border: 2px solid #333;
+    /* 테두리 선 지정 */
+    border-radius: 4px;
+    color: #333;
+    font-size: 16px;
+    font-weight: 700;
+    text-align: center;
+    cursor: pointer;
+    box-sizing: border-box;
+    display: block;
+    transition: .4s;
+}
+
+.btn:hover{
+    /* hover 가상선택자 => btn를 클릭하면 속성이 변화*/
+    background-color: #333;
+    color: white;
+}
+
+.btn.btn--reverse{
+    /* 일치 선택자를 통해 btn 다음에 그 요소의 상태를 의미하는 하이픈 기호를 두 번 넣음
+    =>  반전된 상태 */
+    background-color: #333;
+    color: #fff;
+
+}
+
+.btn.btn--reverse:hover{
+    background-color: transparent;
+    color: #333;
+}
+
+.btn.btn--brown{
+    color: #592B18;
+    border-color: #592B18;
+}
+
+.btn.btn--brown:hover{
+    color: #777;
+    background-color: #592B18;
+}
+
+
+.btn.btn--gold{
+    color: #d9aa8a;
+    border-color: #d9aa8a;
+}
+
+.btn.btn--gold:hover{
+    color: #fff;
+    background-color: #d9aa8a;
+}
+
+.btn.btn--white{
+    color: #fff;
+    border-color: #fff;
+}
+
+.btn.btn--white:hover{
+    color: #333;
+    background-color: #fff;
+}
+
+
+
 /*HEADER*/
 header{
     width: 100%;
@@ -36,7 +105,7 @@ header{
     position: fixed;
     /* 브라우저의 뷰포트를 기준으로 배치 */
     top: 0;
-
+    z-index: 9;
 }
 
 header > .inner{
@@ -265,18 +334,300 @@ header .badges .badge{
 }
 
 
-/* position 속성- 수직 가운데 배치 
+/* VISUAL */
+.visual{
+    /* section 태그 */
+    margin-top: 120px;
+    /* header의 높이값이랑 같음 */
+    background-image: url("../images/visual_bg.jpg");
+    background-position: center;
+}
 
-header .inner{
+.visual .inner{
+    /* section 태그 바로 아래 div */
+    height: 646px;
+}
+
+.visual .title{
+    /* section 태그 >> div(inner) >> div(title)*/
+    position: absolute;
+    /* 구조적 부모 요소(inner 클래스)를 기준으로 배치 */
+    top: 88px;
+    left: -10px;
+}
+
+.visual .title .btn {
+    /* section 태그 >> div(inner) >> div(title) >> a(btn)*/
+    position: absolute;
+    /* title 클래스를 기준으로 배치 */
+    top:259px;
+    left: 173px;
+}
+
+.visual .cup1.image{
+    /* class명이 cup1번이면서 image인 태그(일치 선택자) */
+    position: absolute;
+    /* 구조적 부모 요소(inner 클래스)를 기준으로 배치 */
+    bottom: 0;
+    right: -47px;
+}
+
+.visual .cup1.text{
+    /* class명이 cup1번이면서 text인 태그(일치 선택자) */
+    position: absolute;
+    /* 구조적 부모 요소(inner 클래스)를 기준으로 배치 */
+    top: 38px;
+    right: 171px;
+}
+
+.visual .cup2.image{
+    /* class명이 cup2번이면서 image인 태그(일치 선택자) */
+    position: absolute;
+    /* 구조적 부모 요소(inner 클래스)를 기준으로 배치 */
+    bottom: 0;
+    right: 162px;
+}
+
+.visual .cup2.text{
+    /* class명이 cup2번이면서 text인 태그(일치 선택자) */
+    position: absolute;
+    /* 구조적 부모 요소(inner 클래스)를 기준으로 배치 */
+    top: 321px;
+    right: 416px;
+}
+
+.visual .spoon{
+    /* class명이 spoon인 태그 */
+    position: absolute;
+    /* 구조적 부모 요소(inner 클래스)를 기준으로 배치 */
+    bottom: 0;
+    left: 275px;
+}
+
+.visual .fade-in{
+    opacity: 0;
+}
+
+
+/* NOTICE */
+.notice{
+
+}
+
+.notice .notice-line{
     position: relative;
 }
 
-header .logo{
-    height: 75px;
+.notice .notice-line .bg-left{
     position: absolute;
+    /* 부모 요소를 기준으로 배치 => 부모요소: notice-line 클래스*/
     top:0;
-    bottom: 0;
-    margin: auto;
+    left: 0;
+    width: 50%;
+    height: 100%;
+    /* 이때는 62px */
+    background-color: #333;
 }
 
-*/
+.notice .notice-line .bg-right{
+    position: absolute;
+    /* 부모 요소를 기준으로 배치 => 부모요소: notice-line 클래스*/
+    top:0;
+    right: 0;
+    width: 50%;
+    height: 100%;
+    /* 이때는 62px */
+    background-color: #f6f5ef;
+    
+}
+
+.notice .notice-line .inner{
+    /* 모든 inner 클래스에 공통으로 적용됨 => 가로 방향 가운데 정렬을 할 때 사용 */
+    height: 62px;
+    /* notice의 높이 제어 */
+    display: flex;
+}
+
+.notice .notice-line .inner__left{
+    width: 60%;
+    height: 100%;
+    background-color: #333;
+    display: flex;
+    /* 자식 요소 가로 배치 */
+    align-items: center;
+    /* 자식 수직 가운데 정렬 */
+}
+
+.notice .notice-line .inner__left h2{
+    color: #fff;
+    font-size: 17px;
+    font-weight: 700;
+    margin-right: 20px;
+}
+
+.notice .notice-line .inner__left .swiper-container{
+    flex-grow: 1;
+    height: 62px;
+}
+
+.notice .notice-line .inner__left .swiper-slide{
+    height: 62px;
+    display: flex;
+    align-items: center;
+    /* 자식 요소 수직 가운데 정렬 */
+}
+
+.notice .notice-line .inner__left .swiper-slide a{
+    color: #fff;
+}
+
+.notice .notice-line .inner__left .notice-line__more{
+    width: 62px;
+    height: 62px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* 자식 요소 중앙 배치 */
+}
+
+.notice .notice-line .inner__left .notice-line__more .material-icons{
+    color: #fff;
+    font-size: 30px;
+}
+
+
+.notice .notice-line .inner__right{
+    width: 40%;
+    height: 100%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.notice .notice-line .inner__right h2{
+    font-size: 17px;
+    font-weight: 700;
+}
+
+.notice .notice-line .inner__right .toggle-promotion{
+    width: 62px;
+    height: 62px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.notice .notice-line .inner__right .toggle-promotion .material-icons{
+    font-size: 30px;
+}
+
+.notice .promotion{
+    /* notice 클래스 안 promotion 클래스 */
+    height: 693px;
+    background-color: #f6f5ef;
+    position: relative;
+}
+
+.notice .promotion .swiper-container{
+    width: calc(819px * 3 + 20px);
+    /* calc() 함수 : 계산 함수 각 요소의 크기 819px x 3개 + 좌우여백 10px씩 */
+    height: 553px;
+    position: absolute;
+    /* 부모요소 (promotion)을 기준으로 배치 */
+    top: 40px;
+    left: 50%;
+    /* 부모 요소 크기의 왼쪽으로부터 50% 지점 */
+    margin-left: calc((819px * 3 + 20px)/-2);
+    /* 부모 요소 크기의 왼쪽으로부터 50% 지점에서
+    해당 요소 너비의 절반만큼을 왼쪽으로 옮기는 효과 -> 확대시에도 항상 중앙에 위치  */
+}
+
+.notice .promotion .swiper-slide{
+    opacity: .5;
+    transition: opacity 1s;
+    /* 투명도 */
+    position: relative;
+}
+
+.notice .promotion .swiper-slide-active{
+    opacity: 1;
+    /* 가운데 메인 슬라이드의 투명도만 원상태로 */
+}
+
+.notice .promotion .swiper-slide .btn{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    /* 부모 요소를 기준으로 margin 값을 자동으로 계산해서 가운데 배치 */
+    /* 너비는 btn에 공통으로 130px으로 지정함 */
+}
+
+.notice .promotion .swiper-pagination{
+    bottom: 40px;
+    left: 0;
+    right: 0;
+    /* position: absolute; 내용은 라이브러리가 제공하는 기본 스타일에
+    적용되어 있기 때문에 작성하지 않아도 됨 */
+}
+
+.notice .promotion .swiper-pagination .swiper-pagination-bullet{
+    background-color: transparent;
+    /* 배경색 투명하게 */
+    background-image: url("../images/promotion_slide_pager.png");
+    width: 12px;
+    height: 12px;
+    margin-right: 6px;
+    outline: none;
+}
+
+.notice .promotion .swiper-pagination .swiper-pagination-bullet:last-child{
+    /* last-child 가상 선택자 : 가장 마지막 자식 요소 선택 */
+    margin-right: 0;
+    /* margin-right: 6px;를 하는 이유는 bullet 요소 사이에만 마진을 넣기 위해서라
+    마지막 요소의 오른쪽 마진은 필요 X */
+    
+}
+
+.notice .promotion .swiper-pagination .swiper-pagination-bullet-active{
+    /* 활성화된 페이지 번호 */
+    background-image: url("../images//promotion_slide_pager_on.png");
+
+}
+
+.notice .promotion .swiper-prev,
+.notice .promotion .swiper-next{
+    /* 다중선택자 : 여러개의 요소 선택 (쉼표 사용)  */
+    width: 42px;
+    height: 42px;
+    border: 2px solid #333;
+    border-radius: 50%;
+    position: absolute;
+    top: 300px;
+    z-index: 1;
+    cursor: pointer;
+    outline: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* 자식 요소 정가운데 배치 */
+    transition: .4s;
+}
+
+.notice .promotion .swiper-prev{
+    left: 50%;
+    margin-left: -480px;
+}
+
+.notice .promotion .swiper-next{
+    right: 50%;
+    margin-right: -480px;
+}
+
+.notice .promotion .swiper-prev:hover,
+.notice .promotion .swiper-next:hover{
+    background-color: #333;
+    color: #fff;
+}
