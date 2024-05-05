@@ -106,3 +106,25 @@ new Swiper('.promotion .swiper-container', {
         nextEl: '.promotion .swiper-next' //현재 페이지 이전 요소
     }
 });
+
+
+const promotionEl = document.querySelector('.promotion');
+// promotion 클래스 요소 선택
+const promotionToggleBtn = document.querySelector('.toggle-promotion');
+// toggle-promotion 클래스 요소 선택
+let isHidePromotion = false;
+// let으로 변수 선언 => 값 변화 O (프로모션 요소가 화면에 보이는지 여부)
+
+promotionToggleBtn.addEventListener('click',function(){
+    isHidePromotion = !isHidePromotion;
+    // 값 반대로 => 화면에 보이면(false) 안보이게(true), 안보이면(true) 보이게(false)
+    if(isHidePromotion){ //true일 때 숨김 처리
+        promotionEl.classList.add('hide'); 
+        //hide 클래스 추가 => css에서 안보이게 스타일 추가
+    }else{ //false일 때 보임 처리
+        promotionEl.classList.remove('hide'); //hide 클래스 삭제
+    }
+});
+
+// 요소가 화면에 보이는지를 제어하는 것은
+// js를 통해서 클래스만 추가/제거하고 css를 통해 제어해주는 것이 좋음
