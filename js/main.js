@@ -21,6 +21,7 @@ searchInputEl.addEventListener('blur', function(){
 });
 
 const badgeEl = document.querySelector('header .badges');
+const toTopEl = document.querySelector('#to-top');
 
 // window.addEventListener('scroll', function(){
 //     console.log('scroll!');
@@ -44,7 +45,6 @@ const badgeEl = document.querySelector('header .badges');
 // 화면 자체에다가 스크롤 이벤트를 추가해서 화면이 스크롤되면 0.3초 단위로 익명의 함수를 실행
 //_.throttle(함수, 시간) => 시간 단위로 함수가 실행되게한다.
 
-
 window.addEventListener('scroll', _.throttle(function(){
     if(window.scrollY > 500){
     // window를 scroll하면 scrollY(화면이 위에서부터 몇 픽셀 지점에 위치하는지 표시) 값이 그때그때 갱신이 됨
@@ -53,16 +53,29 @@ window.addEventListener('scroll', _.throttle(function(){
             display: 'none'
         });
         //배지 숨기기 => badge의 0.6초 동안 투명해짐& 요소가 사라짐
+        gsap.to(toTopEl, .2, {
+            x:0
+        });
     }else{
         gsap.to(badgeEl, .6, {
             opacity: 1,
             display:'block'
         });
         //배지 보이기 => badge의 dispaly css 속성을 block으로 & 요소가 다시 배치
+        gsap.to(toTopEl, .2, {
+            x:100
+        });
     }
 }, 300));
 
 // gsap.to(요소, 시간, 옵션) => 애니메이션 처리를 할 요소, 요소 지속시간(초단위), 실제 처리 옵션
+
+toTopEl.addEventListener('click', function(){
+    gsap.to(window, .7, {
+        scrollTo: 0
+    });
+});
+
 
 
 
