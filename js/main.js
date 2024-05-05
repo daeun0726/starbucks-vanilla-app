@@ -108,6 +108,22 @@ new Swiper('.promotion .swiper-container', {
 });
 
 
+new Swiper('.awards .swiper-container', { //new : 생성자
+    autoplay: true, // 자동 재생 여부
+    loop: true, // 반복 재생 여부
+    spaceBetween: 30,
+    slidesPerView: 5,
+    navigation:{
+        prevEl: '.awards .swiper-prev', //현재 페이지 다음 요소
+        nextEl: '.awards .swiper-next' //현재 페이지 이전 요소
+    }
+  });
+
+
+
+
+
+
 const promotionEl = document.querySelector('.promotion');
 // promotion 클래스 요소 선택
 const promotionToggleBtn = document.querySelector('.toggle-promotion');
@@ -128,3 +144,45 @@ promotionToggleBtn.addEventListener('click',function(){
 
 // 요소가 화면에 보이는지를 제어하는 것은
 // js를 통해서 클래스만 추가/제거하고 css를 통해 제어해주는 것이 좋음
+
+
+// 범위 랜덤 함수(소수점 2자리까지)
+function random(min, max) {
+    // `.toFixed()`를 통해 반환된 문자 데이터를,
+    // `parseFloat()`을 통해 소수점을 가지는 숫자 데이터로 변환
+    return parseFloat((Math.random() * (max - min) + min).toFixed(2))
+  }
+
+
+function floatingObject(selector, delay, size){
+    gsap.to(selector, random(1.5, 2.5), {
+        y:size, //y축을 기분으로 얼만큼 움직이는지
+        repeat: -1, //반복 횟수 => -1이면 무한 반복
+        yoyo: true, //한 번 재생된 애니메이션을 다시 뒤로 재생 => 아래로 내려온 요소를 다시 위로
+        ease: Power1.easeInOut, //애니메이션 움직임 제어
+        delay: random(0,delay) //지연 시간
+    });
+}
+// gsap.to(요소, 시간, 옵션) => 애니메이션 처리를 할 요소, 요소 지속시간(초단위), 실제 처리 옵션
+
+floatingObject('.floating1',1,15);
+//floating1 요소에 대해 1초에 한 번씩 15px씩 위아래로 움직이게
+floatingObject('.floating2',.5,15);
+floatingObject('.floating3',1.5,20);
+
+
+
+const spyEls = document.querySelectorAll('section.scroll-spy');
+
+spyEls.forEach(function(spyEl){
+    new ScrollMagic
+        .Scene({
+            triggerElement: spyEl, //보여짐 여부를 감시할 요소를 지정
+            triggerHook: .8
+        })
+        .setClassToggle(spyEl, 'show')
+        .addTo(new ScrollMagic.Controller());
+});
+
+const thisYear = document.querySelector('.this-year');
+thisYear.textContent = new Date().getFullYear();
